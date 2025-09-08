@@ -1,50 +1,43 @@
 ## Azure DevOps Automation visual diagrams 
 
-# End-to-End Platform Overview
+# 1. End-to-End Platform Overview
 
 Shows how code flows from Dev → ADO → ACR/GitOps → Argo CD → AKS, with observability and security controls.
 
 
-```mermaid
-flowchart LR
-  subgraph Dev[Developers]
-    A[App Source Code(Services, Helm charts)]
-    I[Infra as Code(Terraform modules)]
-  end
+<img width="3840" height="377" alt="image" src="https://github.com/user-attachments/assets/c5e9961e-d31d-43f6-9d53-cf1b7cd336d5" />
 
-  subgraph ADO[Azure DevOps]
-    B[CI Pipeline Build+Test+Scan]
-    C[Container Build Image -> ACR]
-    D[Artifact/Chart Publish]
-    E[GitOps Bump (PR to GitOps repo)]
-  end
+#2. Azure DevOps CI/CD & Security Gates
 
-  A --> B --> C --> D --> E
-  I -->|Plan/Apply| ADO
+Emphasize that CI never kubectl-applies. Delivery happens by merging desired state into GitOps.
 
-  subgraph Azure[Azure]
-    F[Azure Container Registry (ACR)]
-    G[(AKS Cluster)]
-    H[Log Analytics / Monitor]
-    J[Key Vault]
-    K[App Gateway/WAF]
-  end
-
-  C --> F
-  E -->|Desired State| L[GitOps Repo]
-
-  subgraph Cluster[Cluster Control]
-    M[Argo CD App-of-Apps]
-  end
-
-  L --> M
-  M -->|Sync| G
-  G -->|Telemetry| H
-  G -->|Pull| F
-  G -->|Secrets CSI| J
-  K -->|Ingress| G
-```
+<img width="3840" height="2372" alt="Untitled diagram _ Mermaid Chart-2025-09-08-122121" src="https://github.com/user-attachments/assets/632c4b69-71ff-4940-a5c4-a9c1308f0b3f" />
 
 
+#3. GitOps with Argo CD (App-of-Apps)
 
-```
+Promotion is a Git merge from dev → test → prod. Argo projects restrict namespaces/cluster-scopes per env.
+
+<img width="3840" height="1719" alt="Untitled diagram _ Mermaid Chart-2025-09-08-123005" src="https://github.com/user-attachments/assets/7a85fa75-c544-473e-b1b8-0a17c6eddf7f" />
+
+
+#4. AKS Baseline Architecture at scale
+
+Call out Workload Identity (OIDC) for MSI-less pod auth, zones for resilience, and private endpoints for ACR/KV.
+
+<img width="3840" height="1042" alt="Untitled diagram _ Mermaid Chart-2025-09-08-123104" src="https://github.com/user-attachments/assets/575cdb83-9d0e-4a0c-b434-528176dcb19e" />
+
+
+#5. Troubleshooting & Optimization Flow
+
+ Tie each branch to a standard runbook and KQL dashboards.
+
+ <img width="3840" height="1678" alt="Untitled diagram _ Mermaid Chart-2025-09-08-123145" src="https://github.com/user-attachments/assets/6e104921-8eb2-479a-9d78-8151cb276611" />
+
+
+ #6. Best Practices & Governance
+
+<img width="3840" height="1609" alt="Untitled diagram _ Mermaid Chart-2025-09-08-123218" src="https://github.com/user-attachments/assets/2513e995-656b-49da-96d6-adeae4b05bbd" />
+
+
+ Use as a checklist slide for design reviews.
