@@ -8,15 +8,15 @@ Shows how code flows from Dev → ADO → ACR/GitOps → Argo CD → AKS, with o
 ```mermaid
 flowchart LR
   subgraph Dev[Developers]
-    A[App Source Code\n(Services, Helm charts)]
-    I[Infra as Code\n(Terraform modules)]
+    A[App Source Code (Services, Helm charts)]
+    I[Infra as Code (Terraform modules)]
   end
 
   subgraph ADO[Azure DevOps]
-    B[CI Pipeline\nBuild+Test+Scan]
-    C[Container Build\nImage -> ACR]
+    B[CI Pipeline Build+Test+Scan]
+    C[Container Build Image -> ACR]
     D[Artifact/Chart Publish]
-    E[GitOps Bump\n(PR to GitOps repo)]
+    E[GitOps Bump (PR to GitOps repo)]
   end
 
   A --> B --> C --> D --> E
@@ -34,7 +34,7 @@ flowchart LR
   E -->|Desired State| L[GitOps Repo]
 
   subgraph Cluster[Cluster Control]
-    M[Argo CD\nApp-of-Apps]
+    M[Argo CD App-of-Apps]
   end
 
   L --> M
