@@ -5,7 +5,7 @@
 Shows how code flows from Dev → ADO → ACR/GitOps → Argo CD → AKS, with observability and security controls.
 
 
-'''mermaid
+```mermaid
 flowchart LR
   subgraph Dev[Developers]
     A[App Source Code\n(Services, Helm charts)]
@@ -43,5 +43,8 @@ flowchart LR
   G -->|Pull| F
   G -->|Secrets CSI| J
   K -->|Ingress| G
-'''
+```
 
+
+
+```
