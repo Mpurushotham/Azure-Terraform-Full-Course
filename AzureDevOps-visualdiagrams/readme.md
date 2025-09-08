@@ -8,8 +8,8 @@ Shows how code flows from Dev → ADO → ACR/GitOps → Argo CD → AKS, with o
 ```mermaid
 flowchart LR
   subgraph Dev[Developers]
-    A[App Source Code (Services, Helm charts)]
-    I[Infra as Code (Terraform modules)]
+    A[App Source Code(Services, Helm charts)]
+    I[Infra as Code(Terraform modules)]
   end
 
   subgraph ADO[Azure DevOps]
