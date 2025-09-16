@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
         source = "hashicorp/azurerm"
-        version = "~> 4.8.0"
+        version = "~> 4.44.0"
     }
   }
   backend "azurerm" {
@@ -11,7 +11,7 @@ terraform {
     container_name       = "tfstate"                       # Can be passed via `-backend-config=`"container_name=<container name>"` in the `init` command.
     key                  = "dev.terraform.tfstate"        # Can be passed via `-backend-config=`"key=<blob key name>"` in the `init` command.
   }
-  required_version = ">=1.9.0"
+  required_version = ">=1.13.2"
 }
 
 provider "azurerm" {
