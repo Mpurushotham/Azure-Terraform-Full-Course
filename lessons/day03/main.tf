@@ -21,8 +21,7 @@ resource "azurerm_resource_group" "example" {
 }
 
 resource "azurerm_storage_account" "example" {
- 
-  name                     = "azuredemostorageacc" # Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+  name                     = "azuredemostorageacc101" # Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location # implicit dependency
   account_tier             = "Standard"
