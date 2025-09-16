@@ -22,13 +22,13 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
+  name     = "Azuredemo-RG"
   location = "West Europe"
 }
 
 resource "azurerm_storage_account" "example" {
  
-  name                     = "techtutorial101"
+  name                     = "azuredemostorageacc101"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location # implicit dependency
   account_tier             = "Standard"
